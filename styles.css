@@ -1,0 +1,82 @@
+/* ROSITA Ferretería - Consolidated Styles */
+
+/* Material Symbols Configuration */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.material-symbols-outlined[style*="FILL' 1"] {
+    font-variation-settings: inherit;
+}
+
+/* Gradient Backgrounds */
+.bg-forge-gradient {
+    background: linear-gradient(135deg, #f26522 0%, #a63b00 100%);
+}
+
+.hero-gradient {
+    background: linear-gradient(135deg, #f26522 0%, #a63b00 100%);
+}
+
+/* Background Color Utilities */
+.tonal-shift-bg-surface-container-low {
+    background-color: #eff4ff;
+}
+
+/* Safe Area Padding for Mobile */
+.pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Body Styles */
+body {
+    min-height: 100dvh;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* iOS Zoom Prevention on Input Focus */
+input, textarea, button {
+    font-size: 16px !important;
+}
+
+/* Section Display Management */
+.page-section {
+    display: none;
+}
+
+.page-section.active {
+    display: block;
+}
+
+/* Navigation Active States */
+.nav-link.active {
+    color: #a63b00;
+    font-weight: 700;
+}
+
+.bottom-nav-item.active {
+    background-color: #fcd5c4;
+    color: #f26522;
+}
+
+/* Smooth Transitions */
+.transition-all {
+    transition: all 0.3s ease;
+}
+
+.transition-transform {
+    transition: transform 0.3s ease;
+}
+
+/* Responsive Grid*/
+@media (max-width: 640px) {
+    .hidden.sm\\:block {
+        display: none;
+    }
+}
+
+@media (min-width: 1024px) {
+    .lg\\:hidden {
+        display: none;
+    }
+}

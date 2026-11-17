@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>ROSITA Oruro - Ferretería Profesional</title>
+    
+    <!-- External Stylesheets -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link href="css/styles.css" rel="stylesheet"/>
+    
+    <!-- Tailwind Configuration -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#f8f9ff",
+                        "primary-fixed": "#ffdbce",
+                        "on-surface-variant": "#594138",
+                        "tertiary-fixed": "#cae6ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#001e2f",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#d0dbed",
+                        "on-primary-fixed-variant": "#7f2b00",
+                        "surface-container": "#e6eeff",
+                        "primary-fixed-dim": "#ffb599",
+                        "inverse-primary": "#ffb599",
+                        "primary": "#a63b00",
+                        "inverse-surface": "#27313f",
+                        "on-tertiary-fixed-variant": "#004b6f",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "on-secondary-fixed-variant": "#3d4757",
+                        "on-primary": "#ffffff",
+                        "surface": "#f8f9ff",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#d9e3f6",
+                        "on-background": "#121c2a",
+                        "on-primary-fixed": "#370e00",
+                        "outline-variant": "#e1bfb3",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#121c2a",
+                        "tertiary": "#006492",
+                        "inverse-on-surface": "#eaf1ff",
+                        "secondary-fixed": "#d9e3f7",
+                        "on-secondary-container": "#596374",
+                        "surface-container-high": "#dee9fc",
+                        "on-tertiary-container": "#002d45",
+                        "secondary-fixed-dim": "#bdc7db",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "outline": "#8d7166",
+                        "tertiary-container": "#009ade",
+                        "tertiary-fixed-dim": "#8cceff",
+                        "surface-tint": "#a63b00",
+                        "background": "#f8f9ff",
+                        "on-primary-container": "#4f1800",
+                        "on-secondary-fixed": "#121c2a",
+                        "secondary-container": "#d6e0f4",
+                        "secondary": "#555f70",
+                        "surface-container-highest": "#d9e3f6",
+                        "primary-container": "#f26522"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Work Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface font-body text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed-variant">
+
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="hidden fixed top-16 left-0 right-0 z-40 bg-white shadow-lg lg:hidden">
+    <nav class="flex flex-col p-4 space-y-2">
+        <button class="mobile-menu-link text-left px-4 py-3 text-sm font-bold uppercase tracking-widest text-orange-600 hover:bg-orange-50 rounded transition" onclick="showPage('inicio'); toggleMenu()">Inicio</button>
+        <button class="mobile-menu-link text-left px-4 py-3 text-sm font-bold uppercase tracking-widest text-slate-600 hover:bg-orange-50 rounded transition" onclick="showPage('nosotros'); toggleMenu()">Nosotros</button>
+        <button class="mobile-menu-link text-left px-4 py-3 text-sm font-bold uppercase tracking-widest text-slate-600 hover:bg-orange-50 rounded transition" onclick="showPage('productos'); toggleMenu()">Catálogo</button>
+        <button class="mobile-menu-link text-left px-4 py-3 text-sm font-bold uppercase tracking-widest text-slate-600 hover:bg-orange-50 rounded transition" onclick="showPage('contacto'); toggleMenu()">Contacto</button>
+    </nav>
+</div>
+
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-sm">
+    <div class="flex items-center justify-between px-4 sm:px-6 md:px-12 py-4 w-full max-w-7xl mx-auto">
+        <div class="flex items-center gap-4 flex-1">
+            <button id="menuBtn" class="lg:hidden cursor-pointer hover:bg-gray-100 p-2 rounded transition" onclick="toggleMenu()">
+                <span class="material-symbols-outlined text-slate-600">menu</span>
+            </button>
+            <h1 class="text-xl sm:text-2xl font-black tracking-tighter text-orange-600 font-headline">ROSITA</h1>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center gap-8 ml-8">
+                <a class="nav-link active text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors" href="#" data-page="inicio">Inicio</a>
+                <a class="nav-link text-sm font-bold uppercase tracking-widest text-slate-500 hover:text-primary transition-colors" href="#" data-page="nosotros">Nosotros</a>
+                <a class="nav-link text-sm font-bold uppercase tracking-widest text-slate-500 hover:text-primary transition-colors" href="#" data-page="productos">Catálogo</a>
+                <a class="nav-link text-sm font-bold uppercase tracking-widest text-slate-500 hover:text-primary transition-colors" href="#" data-page="contacto">Contacto</a>
+            </nav>
+        </div>
+        
+        <div class="flex items-center gap-3 sm:gap-4">
+            <span class="material-symbols-outlined text-slate-600 cursor-pointer">search</span>
+            <span class="material-symbols-outlined text-slate-600 cursor-pointer">shopping_cart</span>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="pt-20 pb-28 max-w-7xl mx-auto">
+
+    <!-- ============ PAGE: INICIO ============ -->
+    <div id="inicio" class="page-section active">
+        <!-- Hero Section -->
+        <section class="px-4 sm:px-6 md:px-12 mb-12">
+            <div class="relative overflow-hidden rounded-2xl aspect-[4/5] sm:aspect-[16/9] md:aspect-[21/9] bg-surface-container-low">
+                <img alt="Hardware Store Interior" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVO0nCwHzwvmJCwG7DNICp9Nzb3WEDO3lwdfFlfJDGhN1WhhfxSPkGcjG3y7GN1LpWHGzqPahMak-puVeYuGbdwz5U_4b7-UBpzbyZI8-TADuCJ5vNnPZufMxu3k8KwEcCT_9MetxQfZorx4ab5EreZ0PNH-R4QFYXLbq--WGvGhAL4520EuS9sfc1X5q-8fQ62HEY2JxxjGxJZiQiBrWyYr0QmAysaKtxqb1zHWW8FofB8SwVkPKicnrCPaGvhpOw3xhDo7sAjNW1"/>
+                <div class="absolute inset-0 bg-gradient-to-tr from-on-background via-on-background/60 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 p-6 sm:p-10 md:p-16 lg:p-24 max-w-2xl">
+                    <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-headline text-white tracking-tighter mb-4 leading-tight uppercase">
+                        Equipa tu<br/><span class="text-primary-container">Proyecto.</span>
+                    </h2>
+                    <p class="text-surface-variant font-body text-base sm:text-lg md:text-xl mb-6 sm:mb-8 max-w-md">Soluciones profesionales de ferretería en el corazón de Oruro. Calidad industrial para resultados excepcionales.</p>
+                    <button class="bg-gradient-to-tl from-primary to-primary-container text-white px-6 sm:px-8 py-3 sm:py-4 rounded-md font-bold tracking-tight shadow-lg flex items-center gap-2 transition-transform hover:scale-105" onclick="showPage('productos')">
+                        Ver Catálogo <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section class="px-4 sm:px-6 md:px-12 mb-12">
+            <div class="flex items-end justify-between mb-6">
+                <h3 class="text-2xl sm:text-3xl font-black font-headline tracking-tighter text-on-background uppercase">Categorías</h3>
+                <span class="text-primary font-bold text-sm tracking-widest uppercase cursor-pointer hover:underline">Explorar</span>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+                <div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/10 shadow-sm flex flex-col justify-between h-36 sm:h-44 hover:shadow-md transition-shadow cursor-pointer">
+                    <span class="material-symbols-outlined text-primary text-3xl sm:text-4xl" style="font-variation-settings: 'FILL' 1;">build</span>
+                    <span class="font-headline font-bold text-on-surface uppercase text-xs sm:text-sm">Herramientas</span>
+                </div>
+                <div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/10 shadow-sm flex flex-col justify-between h-36 sm:h-44 hover:shadow-md transition-shadow cursor-pointer">
+                    <span class="material-symbols-outlined text-primary text-3xl sm:text-4xl">settings</span>
+                    <span class="font-headline font-bold text-on-surface uppercase text-xs sm:text-sm">Tornillería</span>
+                </div>
+                <div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/10 shadow-sm flex flex-col justify-between h-36 sm:h-44 hover:shadow-md transition-shadow cursor-pointer">
+                    <span class="material-symbols-outlined text-primary text-3xl sm:text-4xl">foundation</span>
+                    <span class="font-headline font-bold text-on-surface uppercase text-xs sm:text-sm">Construcción</span>
+                </div>
+                <div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/10 shadow-sm flex flex-col justify-between h-36 sm:h-44 hover:shadow-md transition-shadow cursor-pointer">
+                    <span class="material-symbols-outlined text-primary text-3xl sm:text-4xl">format_paint</span>
+                    <span class="font-headline font-bold text-on-surface uppercase text-xs sm:text-sm">Pinturas</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="bg-surface-container-low py-12 px-4 sm:px-6 md:px-12 sm:rounded-[32px]">
+            <div class="flex items-end justify-between mb-8 max-w-full">
+                <div>
+                    <span class="text-primary font-black tracking-widest text-[10px] sm:text-xs uppercase mb-1 block">Calidad Superior</span>
+                    <h3 class="text-2xl sm:text-3xl font-black font-headline tracking-tighter text-on-background uppercase">Destacados</h3>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Product Card 1 -->
+                <div class="bg-surface-container-lowest rounded-xl overflow-hidden flex shadow-sm hover:shadow-lg transition-all group">
+                    <div class="w-32 h-32 flex-shrink-0 bg-surface-variant/20 p-4">
+                        <img alt="Power Drill" class="w-full h-full object-contain group-hover:scale-110 transition-transform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXeg7L1aVLp3hMv5y1ZVtXbU1Bcwxv8wZFxvnslGEd0Enk7ppchvnMdPWKXEx4N_t0RluKByvo3haLMzrFYPtHWiH6cXX7i8xPwYlr96-r_X2pR4QkRuskzRd7VKs0_e9TUieUThbbaMTtVLN7s6DypV0R5GGzEEBGO3rCYWqewqNCYg24kYrRFLh8RlFMLoY3_I_bD7N7GDlSvgZaw5buTmNXbR_SLCe2vLrf01g1WTvufpsCDQoJebsSjSVwlmx5Vc_CDslIWOXE"/>
+                    </div>
+                    <div class="p-4 flex flex-col justify-between flex-grow">
+                        <div>
+                            <span class="bg-secondary-fixed text-on-secondary-fixed-variant text-[10px] px-2 py-0.5 rounded font-bold uppercase tracking-wider mb-1 inline-block">Industrial</span>
+                            <h4 class="font-bold text-on-background font-headline text-base sm:text-lg leading-tight">Taladro Percutor 20V</h4>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-primary font-black text-lg sm:text-xl">Bs. 840</span>
+                            <button class="bg-primary-container/10 p-2 rounded-lg hover:bg-primary-container hover:text-white transition-colors">
+                                <span class="material-symbols-outlined text-primary group-hover:text-inherit" style="font-variation-settings: 'FILL' 1;">add_shopping_cart</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="bg-surface-container-lowest rounded-xl overflow-hidden flex shadow-sm hover:shadow-lg transition-all group">
+                    <div class="w-32 h-32 flex-shrink-0 bg-surface-variant/20 p-4">
+                        <img alt="Wrench Set" class="w-full h-full object-contain group-hover:scale-110 transition-transform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZPQ0KGEIqCZgxIP2GxuDCapsqja-5pVv5afY-PwDkm8EXm_AZKJIxeNSa2MSun9ZFTkBNOm5HqbaxLdE2-a4wLLOJahwu6vTi2V3V6WrfQN2KyXbCrzRJ4TCAQYslWQIqBZFcgtp4-NpEBmU36ofAtS_k2N1ycqFSFZkDtD3UOwCulEYBvhSQPnv00i7Udq5ZPcnDvd_aK1jKL2D88yPrBTHgdJGOVYjHLsxl3UarYAuge_eJ5wLmrUmcJh2ik2H4wRyK8vZMC0Bc"/>
+                    </div>
+                    <div class="p-4 flex flex-col justify-between flex-grow">
+                        <div>
+                            <span class="bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] px-2 py-0.5 rounded font-bold uppercase tracking-wider mb-1 inline-block">Garantía</span>
+                            <h4 class="font-bold text-on-background font-headline text-base sm:text-lg leading-tight">Juego Llaves Corona</h4>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-primary font-black text-lg sm:text-xl">Bs. 215</span>
+                            <button class="bg-primary-container/10 p-2 rounded-lg hover:bg-primary-container hover:text-white transition-colors">
+                                <span class="material-symbols-outlined text-primary group-hover:text-inherit" style="font-variation-settings: 'FILL' 1;">add_shopping_cart</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location & Info -->
+        <section class="px-4 sm:px-6 md:px-12 py-16 bg-on-background text-surface sm:rounded-b-[32px] overflow-hidden mt-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-primary-container font-black tracking-widest text-[10px] sm:text-xs uppercase mb-1 block">Visítanos</span>
+                    <h3 class="text-3xl sm:text-4xl font-black font-headline tracking-tighter uppercase mb-8">Ubicación Oruro</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <span class="material-symbols-outlined text-primary-container">location_on</span>
+                            <p class="font-body text-sm sm:text-base leading-relaxed opacity-80">Calle Potosi No 5168 entre Leon y Rodriguez, Oruro, Bolivia.</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="material-symbols-outlined text-primary-container">phone_iphone</span>
+                            <p class="font-bold text-lg sm:text-xl font-headline">72340086</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="material-symbols-outlined text-primary-container">schedule</span>
+                            <p class="font-body text-sm sm:text-base opacity-80">Lun - Sáb: 08:30 - 19:00</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Map Placeholder -->
+                <div class="h-64 sm:h-80 w-full rounded-2xl bg-slate-800 overflow-hidden relative grayscale opacity-60">
+                    <img alt="Map" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDevaNvVc6mvkAcxBqwQ9IQUugGrIdD4ofZyR9_OPKoDCZ72fWVAo79eHtF9cSaqw9Hw2xJcidrA5jQx_FjSbNAiQcTAL31G55w0rdiQyBdK3hV6x5xfxlUn0yeXdF5iPIqXjJ30JH9gcjwMumyZJ_AbzlYVGvpQE5jAeBLuvZmnbLvkYcHmhC6NHM_c1E_W0Xtqj-QJG-GAJEwqgQQ8wwNi-NgMgaAcsYQgqZc6JMBoHKnv6PzNDWrQt--2v2a-fGQ0U6I-HyAft8a"/>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="bg-primary p-4 rounded-full shadow-2xl animate-pulse">
+                            <span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">location_on</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============ PAGE: NOSOTROS ============ -->
+    <div id="nosotros" class="page-section">
+        <!-- Hero Section: The Architectural Forge -->
+        <section class="px-6 py-8">
+            <div class="relative overflow-hidden rounded-xl bg-slate-900 aspect-[4/3] flex items-end p-8">
+                <img class="absolute inset-0 w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIl5UIcRRmNBJaOGYdsoiTl0uj5PQ8xynQrPQhEv_iXR9S8fXBOaLvQ---QMLoJVuCkuFD8gliQyMxFgzdIBNEB224J9DiRkqUEIBlsZAwPWZHfs2HcHGeNj2Ouok_0IaNP09v5nXyodIIRBsyKA_fMkqpAXIu3gTuhFKVCeRaDG6VLGEq46ZOaDxveVhPihLTUplhHqYA1W7JtMvAhJ0qzMpTjPlozcesTSBJwpeZtA7Qjlt3Wft0hibAThPspgQi9X_pmHHfNrOY"/>
+                <div class="relative z-10">
+                    <span class="inline-block px-3 py-1 bg-primary text-on-primary text-[10px] font-bold tracking-widest uppercase rounded-sm mb-4">Desde 2018</span>
+                    <h2 class="font-headline text-4xl font-extrabold text-white leading-none tracking-tighter">FORJANDO EL FUTURO DE ORURO.</h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- History Content -->
+        <section class="px-6 py-10 bg-surface-container-low">
+            <div class="max-w-xl mx-auto">
+                <h3 class="font-headline text-2xl text-primary font-bold mb-4">6 Años de Excelencia</h3>
+                <p class="text-base text-on-surface-variant leading-relaxed">
+                    Fundada hace 6 años en el corazón de Oruro, Bolivia, <span class="font-bold text-on-surface">Ferretería ROSITA</span> nació con una visión clara: elevar los estándares de la construcción y el mantenimiento industrial en nuestra región. No somos solo proveedores; somos el soporte técnico de cada proyecto que transforma nuestra ciudad.
+                </p>
+            </div>
+        </section>
+
+        <!-- Mission & Vision -->
+        <section class="px-6 py-12 space-y-4">
+            <div class="grid grid-cols-1 gap-4">
+                <!-- Mission -->
+                <div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm border-l-4 border-primary">
+                    <span class="material-symbols-outlined text-primary mb-4" style="font-variation-settings: 'FILL' 1;">foundation</span>
+                    <h4 class="font-headline text-xl font-bold mb-2">Nuestra Misión</h4>
+                    <p class="text-on-surface-variant text-sm">Proveer soluciones integrales en hardware y herramientas de precisión, garantizando que cada constructor y artesano en Oruro cuente con la tecnología necesaria para construir con seguridad y eficiencia.</p>
+                </div>
+
+                <!-- Values -->
+                <div class="bg-surface-container-highest p-8 rounded-xl">
+                    <h4 class="font-headline text-xl font-bold mb-6 text-on-surface">Valores Fundamentales</h4>
+                    <ul class="space-y-6">
+                        <li class="flex gap-4">
+                            <span class="material-symbols-outlined text-tertiary">precision_manufacturing</span>
+                            <div>
+                                <p class="font-bold text-sm">Precisión Industrial</p>
+                                <p class="text-xs text-on-surface-variant">Calidad técnica rigurosa en cada pieza.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="material-symbols-outlined text-tertiary">handshake</span>
+                            <div>
+                                <p class="font-bold text-sm">Compromiso Local</p>
+                                <p class="text-xs text-on-surface-variant">Apoyo directo al desarrollo de Oruro.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="material-symbols-outlined text-tertiary">verified</span>
+                            <div>
+                                <p class="font-bold text-sm">Garantía Profesional</p>
+                                <p class="text-xs text-on-surface-variant">Solo marcas líderes y certificadas.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location Section -->
+        <section class="px-6 py-10 bg-surface-container-low rounded-t-[2rem]">
+            <div class="flex flex-col gap-6">
+                <div>
+                    <h4 class="font-headline text-2xl font-black text-on-background tracking-tighter mb-2">UBICACIÓN ESTRATÉGICA</h4>
+                    <p class="text-sm text-on-surface-variant flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary text-base">location_on</span>
+                        Calle Potosi No 5168 entre Leon y Rodriguez, Oruro.
+                    </p>
+                </div>
+                <div class="rounded-xl overflow-hidden h-48 bg-slate-200 relative grayscale contrast-125">
+                    <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHafF4kj4BVjNRyMgH1uzsp2Fgh2Lj8e0c0fiZfUA_dlDOgnwSP02GfZ0UCOxWReRfR4mbmhTmBc98yR9Y_k5y_c7g7wR-5pRGpvKfBppJQ7oNCGRmOYMTi_cHoXomY-ahtO30G6325AF61xK_N1faFwPo5d59xy1sAeqCoA0K3YA7O3Lk1wBVusUr2gwMkbDmq_vr6HgYgnUlF8r6R23EppvbW4WfOecavOi9dl1yt-bxE7nHe1PDLLYkR7vdMzeBge7uBpiDwm_P"/>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-12 h-12 bg-primary/20 rounded-full animate-pulse flex items-center justify-center">
+                            <div class="w-4 h-4 bg-primary rounded-full border-2 border-white"></div>
+                        </div>
+                    </div>
+                </div>
+                <a class="hero-gradient text-on-primary font-bold py-4 px-6 rounded-md text-center flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-transform cursor-pointer" onclick="showPage('contacto')">
+                    <span class="material-symbols-outlined">directions</span>
+                    CÓMO LLEGAR
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============ PAGE: PRODUCTOS ============ -->
+    <div id="productos" class="page-section">
+        <section class="px-4 sm:px-6 md:px-12 py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl sm:text-5xl font-black font-headline text-on-background tracking-tighter mb-4 uppercase">Catálogo de Productos</h2>
+                <p class="text-on-surface-variant max-w-2xl mx-auto">Contamos con una amplia gama de herramientas y materiales de construcción de las mejores marcas internacionales.</p>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Product 1 -->
+                <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all group">
+                    <div class="w-full h-48 bg-surface-variant/20 p-4 flex items-center justify-center">
+                        <img alt="Taladro" class="w-full h-full object-contain group-hover:scale-110 transition-transform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXeg7L1aVLp3hMv5y1ZVtXbU1Bcwxv8wZFxvnslGEd0Enk7ppchvnMdPWKXEx4N_t0RluKByvo3haLMzrFYPtHWiH6cXX7i8xPwYlr96-r_X2pR4QkRuskzRd7VKs0_e9TUieUThbbaMTtVLN7s6DypV0R5GGzEEBGO3rCYWqewqNCYg24kYrRFLh8RlFMLoY3_I_bD7N7GDlSvgZaw5buTmNXbR_SLCe2vLrf01g1WTvufpsCDQoJebsSjSVwlmx5Vc_CDslIWOXE"/>
+                    </div>
+                    <div class="p-4">
+                        <span class="bg-secondary-fixed text-on-secondary-fixed-variant text-[10px] px-2 py-0.5 rounded font-bold uppercase tracking-wider mb-2 inline-block">Industrial</span>
+                        <h4 class="font-bold text-on-background font-headline text-lg mb-2">Taladro Percutor 20V</h4>
+                        <p class="text-on-surface-variant text-sm mb-4">Potencia profesional con batería recargable. Ideal para trabajos de perforación en hormigón y acero.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-primary font-black text-xl">Bs. 840</span>
+                            <button class="bg-primary-container/10 p-2 rounded-lg hover:bg-primary-container hover:text-white transition-colors">
+                                <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">add_shopping_cart</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all group">
+                    <div class="w-full h-48 bg-surface-variant/20 p-4 flex items-center justify-center">
+                        <img alt="Llaves" class="w-full h-full object-contain group-hover:scale-110 transition-transform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZPQ0KGEIqCZgxIP2GxuDCapsqja-5pVv5afY-PwDkm8EXm_AZKJIxeNSa2MSun9ZFTkBNOm5HqbaxLdE2-a4wLLOJahwu6vTi2V3V6WrfQN2KyXbCrzRJ4TCAQYslWQIqBZFcgtp4-NpEBmU36ofAtS_k2N1ycqFSFZkDtD3UOwCulEYBvhSQPnv00i7Udq5ZPcnDvd_aK1jKL2D88yPrBTHgdJGOVYjHLsxl3UarYAuge_eJ5wLmrUmcJh2ik2H4wRyK8vZMC0Bc"/>
+                    </div>
+                    <div class="p-4">
+                        <span class="bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] px-2 py-0.5 rounded font-bold uppercase tracking-wider mb-2 inline-block">Garantía</span>
+                        <h4 class="font-bold text-on-background font-headline text-lg mb-2">Juego Llaves Corona</h4>
+                        <p class="text-on-surface-variant text-sm mb-4">Set completo de 12 piezas cromadas. Material de acero forjado, durabilidad garantizada.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-primary font-black text-xl">Bs. 215</span>
+                            <button class="bg-primary-container/10 p-2 rounded-lg hover:bg-primary-container hover:text-white transition-colors">
+                                <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">add_shopping_cart</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all group">
+                    <div class="w-full h-48 bg-surface-variant/20 p-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-6xl">build</span>
+                    </div>
+                    <div class="p-4">
+                        <span class="bg-primary-fixed text-on-primary-fixed text-[10px] px-2 py-0.5 rounded font-bold uppercase tracking-wider mb-2 inline-block">Popular</span>
+                        <h4 class="font-bold text-on-background font-headline text-lg mb-2">Juego Destornilladores</h4>
+                        <p class="text-on-surface-variant text-sm mb-4">25 piezas magnéticas. Incluye destornilladores de precisión para trabajos finos.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-primary font-black text-xl">Bs. 145</span>
+                            <button class="bg-primary-container/10 p-2 rounded-lg hover:bg-primary-container hover:text-white transition-colors">
+                                <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">add_shopping_cart</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============ PAGE: CONTACTO ============ -->
+    <div id="contacto" class="page-section">
+        <!-- Hero Header -->
+        <section class="mb-12 px-4 sm:px-6 md:px-12 py-8">
+            <h2 class="text-4xl font-black font-headline text-on-background tracking-tighter leading-none mb-4">
+                CONTACTO <br/> <span class="text-primary">PROFESIONAL</span>
+            </h2>
+            <p class="text-on-surface-variant font-body leading-relaxed max-w-xs">
+                Estamos aquí para proveer las soluciones industriales que su proyecto demanda.
+            </p>
+        </section>
+
+        <!-- Bento Grid Layout -->
+        <div class="px-4 sm:px-6 md:px-12 grid grid-cols-1 gap-6 mb-12">
+            <!-- Map Placeholder Card -->
+            <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm h-64 sm:h-80 relative group">
+                <div class="absolute inset-0 bg-surface-variant flex items-center justify-center">
+                    <img alt="Map" class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-bddVHzWUOMIwFe5UfufhyszzqvfDRdTwkJ3XkdUhI8fxJAqYAYVGacwTgqeq5t0Tsi54mDFPIS4zdSnE05wwplYIWDaVB2ZZFZckoYhlzvLRhvf888jzqCCn6xGY85NxJoH2xkzfunZM04dGXw8NNCbVKcKRXt5LjWUC4if48UcBWedwKH5cqjtRk14nsv3FU4P6ke3QS23Xm4LVGBmrRWe8zhMiixXcF62ZHJLWWMc18FvoJZSI0yJV2QSJr3mTX3DuS-R1-l4U"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-on-background/40 to-transparent"></div>
+                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 sm:left-4 sm:translate-x-0 bg-white px-3 py-1.5 rounded flex items-center gap-2 shadow-md">
+                        <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">location_on</span>
+                        <span class="font-label font-bold text-[10px] uppercase tracking-widest text-on-surface">Oruro, Bolivia</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="space-y-6">
+                    <!-- Address & Phone Details -->
+                    <div class="bg-surface-container-low p-6 rounded-xl space-y-8">
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded bg-primary-fixed flex items-center justify-center flex-shrink-0">
+                                    <span class="material-symbols-outlined text-primary">location_city</span>
+                                </div>
+                                <div>
+                                    <span class="block font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-1">Dirección</span>
+                                    <p class="font-headline font-bold text-lg leading-tight">Calle Potosi No 5168</p>
+                                    <p class="text-on-surface-variant text-sm">entre Leon y Rodriguez, Oruro</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 pt-4 border-t border-outline-variant/20">
+                                <div class="w-12 h-12 rounded bg-tertiary-fixed flex items-center justify-center flex-shrink-0">
+                                    <span class="material-symbols-outlined text-tertiary">call</span>
+                                </div>
+                                <div>
+                                    <span class="block font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-1">Teléfono Directo</span>
+                                    <p class="font-headline font-bold text-lg leading-tight">72340086</p>
+                                    <p class="text-on-surface-variant text-sm">WhatsApp disponible 24/7</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hours of Operation -->
+                    <div class="bg-inverse-surface p-6 rounded-xl text-white shadow-lg">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="material-symbols-outlined text-primary-container">schedule</span>
+                            <h3 class="font-headline font-bold tracking-tight">HORARIOS DE ATENCIÓN</h3>
+                        </div>
+                        <div class="space-y-3 font-label text-sm">
+                            <div class="flex justify-between border-b border-white/10 pb-2">
+                                <span class="opacity-70">Lunes - Viernes</span>
+                                <span class="font-bold">08:00 - 19:00</span>
+                            </div>
+                            <div class="flex justify-between border-b border-white/10 pb-2">
+                                <span class="opacity-70">Sábado</span>
+                                <span class="font-bold">08:30 - 14:00</span>
+                            </div>
+                            <div class="flex justify-between text-primary-container">
+                                <span class="opacity-70 italic text-white">Domingo</span>
+                                <span class="font-bold">Cerrado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-surface-container-lowest p-6 sm:p-8 rounded-xl shadow-sm border border-outline-variant/10">
+                    <h3 class="font-headline font-bold text-xl mb-6">ENVIAR MENSAJE</h3>
+                    <form action="#" class="space-y-6">
+                        <div>
+                            <label class="block font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-2 ml-1">Nombre Completo</label>
+                            <input autocomplete="name" class="w-full min-h-[56px] bg-surface-container-high border-none rounded-lg px-4 py-3 font-body focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/40 transition-all outline-none" placeholder="Ej. Juan Perez" type="text"/>
+                        </div>
+                        <div>
+                            <label class="block font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-2 ml-1">Correo Electrónico</label>
+                            <input autocomplete="email" class="w-full min-h-[56px] bg-surface-container-high border-none rounded-lg px-4 py-3 font-body focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/40 transition-all outline-none" placeholder="nombre@empresa.com" type="email"/>
+                        </div>
+                        <div>
+                            <label class="block font-label text-[10px] uppercase tracking-widest text-on-surface-variant mb-2 ml-1">Consulta o Pedido</label>
+                            <textarea class="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 font-body focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/40 transition-all outline-none resize-none" placeholder="Describa los materiales o herramientas que requiere..." rows="5"></textarea>
+                        </div>
+                        <button class="w-full min-h-[56px] bg-forge-gradient text-on-primary font-headline font-bold py-4 rounded-lg active:scale-[0.98] transition-transform shadow-lg shadow-primary/20 flex items-center justify-center gap-2" type="submit">
+                            SOLICITAR COTIZACIÓN
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 bg-white/80 backdrop-blur-md rounded-t-2xl shadow-lg lg:hidden">
+    <div class="flex justify-around items-center px-4 py-3 pb-safe w-full">
+        <button class="bottom-nav-item active flex flex-col items-center justify-center text-slate-500 px-4 py-1.5 transition-all rounded-xl" onclick="showPage('inicio')">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+            <span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Inicio</span>
+        </button>
+        <button class="bottom-nav-item flex flex-col items-center justify-center text-slate-500 px-4 py-1.5 transition-all rounded-xl" onclick="showPage('nosotros')">
+            <span class="material-symbols-outlined">info</span>
+            <span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Nosotros</span>
+        </button>
+        <button class="bottom-nav-item flex flex-col items-center justify-center text-slate-500 px-4 py-1.5 transition-all rounded-xl" onclick="showPage('productos')">
+            <span class="material-symbols-outlined">construction</span>
+            <span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Productos</span>
+        </button>
+        <button class="bottom-nav-item flex flex-col items-center justify-center text-slate-500 px-4 py-1.5 transition-all rounded-xl" onclick="showPage('contacto')">
+            <span class="material-symbols-outlined">contact_phone</span>
+            <span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Contacto</span>
+        </button>
+    </div>
+</nav>
+
+<!-- Footer -->
+<footer class="bg-slate-900 w-full text-center py-12 px-6 flex flex-col items-center gap-4 border-t-0 pb-32 lg:pb-12">
+    <h4 class="text-white font-headline font-bold text-xl uppercase tracking-tighter">ROSITA Oruro</h4>
+    <p class="font-body text-xs text-slate-400 max-w-sm leading-relaxed">© 2024 ROSITA Oruro. Professional Hardware Solutions. Calle Potosi 5168, Oruro, Bolivia.</p>
+    <div class="flex gap-6 mt-2">
+        <a class="text-slate-500 font-body text-xs uppercase tracking-widest hover:text-white transition-colors cursor-pointer" href="#">Privacidad</a>
+        <a class="text-slate-500 font-body text-xs uppercase tracking-widest hover:text-white transition-colors cursor-pointer" href="#">Términos</a>
+        <a class="text-slate-500 font-body text-xs uppercase tracking-widest hover:text-white transition-colors cursor-pointer" href="#">Envíos</a>
+    </div>
+</footer>
+
+<!-- Navigation Script -->
+<script>
+    // Toggle mobile menu
+    function toggleMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenu) {
+            mobileMenu.classList.toggle('hidden');
+        }
+    }
+
+    function showPage(pageName) {
+        // Hide all sections
+        const sections = document.querySelectorAll('.page-section');
+        sections.forEach(section => section.classList.remove('active'));
+
+        // Show selected section
+        const selectedSection = document.getElementById(pageName);
+        if (selectedSection) {
+            selectedSection.classList.add('active');
+        }
+
+        // Update navigation links (desktop)
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => link.classList.remove('active'));
+        const activeLink = document.querySelector(`.nav-link[data-page="${pageName}"]`);
+        if (activeLink) {
+            activeLink.classList.add('active');
+        }
+
+        // Update mobile menu links
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+        mobileMenuLinks.forEach(link => link.classList.remove('text-orange-600'));
+        mobileMenuLinks.forEach(link => link.classList.add('text-slate-600'));
+        const activeMobileLink = Array.from(mobileMenuLinks).find(link => 
+            link.textContent.trim().toLowerCase().includes(getPageLabel(pageName).toLowerCase())
+        );
+        if (activeMobileLink) {
+            activeMobileLink.classList.remove('text-slate-600');
+            activeMobileLink.classList.add('text-orange-600');
+        }
+
+        // Update bottom nav items
+        const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
+        bottomNavItems.forEach(item => item.classList.remove('active'));
+        event?.target?.closest('.bottom-nav-item')?.classList.add('active');
+
+        // Scroll to top
+        window.scrollTo(0, 0);
+    }
+
+    function getPageLabel(pageName) {
+        const labels = {
+            'inicio': 'Inicio',
+            'nosotros': 'Nosotros',
+            'productos': 'Catálogo',
+            'contacto': 'Contacto'
+        };
+        return labels[pageName] || pageName;
+    }
+
+    // Add event listeners to navigation links
+    document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageName = link.getAttribute('data-page');
+                showPage(pageName);
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuBtn = document.getElementById('menuBtn');
+            if (mobileMenu && menuBtn && !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
